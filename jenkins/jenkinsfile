@@ -10,20 +10,30 @@ pipeline {
             }
         }
 
-        stage('Install dependencies') {
-    steps {
-        sh '''
-            python3 --version
-            python3 -m pip --version
-            python3 -m pip install -r requirements.txt
-        '''
-    }
-}
+        stage('Check Python') {
+            steps {
+                sh '''
+                    echo "Checking Python installation..."
+                    which python3
+                    python3 --version
+                    python3 -m pip --version
+                '''
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    python3 -m pip install -r requirements.txt
+                '''
+            }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'python -m pytest'
+                sh '''
+                    python3 -m pytest
+                '''
             }
         }
     }

@@ -1,0 +1,12 @@
+application:
+  name: ran-simulator
+  version: "1.0"
+
+ran:
+  components:
+    - RU
+    - DU
+    - CU
+
+environment:
+  name: development
